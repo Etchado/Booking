@@ -8,4 +8,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('services', ServiceController::class)->only(['index', 'store', 'show']);
+Route::prefix('v1')->group(function () {
+    Route::apiResource('services', ServiceController::class);
+});
